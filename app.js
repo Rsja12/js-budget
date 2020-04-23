@@ -7,4 +7,9 @@ add item from data struct to UI
 calculate budget
 update UI from budget calculation
 
+Modules:
+    UI Module
+    Data Module
+    Controller Module 
+    
 */
