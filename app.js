@@ -120,6 +120,19 @@ var uiController = (function() {
             // identify correct container (income or expense), insert correct html
             document.querySelector(element).insertAdjacentHTML('afterbegin', newHtml)
 
+        },
+
+        clearFields: function() {
+            var fields, fieldsArr
+
+            // select fields that we want to clear
+            fields = document.querySelectorAll(domStrings.inputDescription + ', ' + domStrings.inputValue)
+            // turns list into array
+            fieldsArr = Array.prototype.slice.call(fields)
+            // iterates over array to clear selected fields
+            fieldsArr.forEach( function(field) {
+                field.value = ''
+            });
         }
 
     }
@@ -154,12 +167,12 @@ var controller = (function(budgetCtrl, uiCtrl) {
         var input, newItem
         // get the field input data
         input = uiCtrl.getInput()
-        console.log(input)
         // Add item to budget controller
         newItem = budgetCtrl.addItem(input.type, input.description, input.value)
-        console.log(newItem)
         // add item to the ui
         uiCtrl.addListItem(newItem, input.type)
+        // clear fields
+        uiCtrl.clearFields()
 
     }
 
