@@ -70,7 +70,7 @@ var uiController = (function() {
 
 // APP CONTROLLER ************************************************
 
-var appController = (function(budgetCtrl, uiCtrl) {
+var controller = (function(budgetCtrl, uiCtrl) {
 
     // obj with dom elements
     var dom = uiCtrl.getDomStrings()
