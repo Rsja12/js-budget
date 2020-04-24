@@ -132,7 +132,9 @@ var uiController = (function() {
             // iterates over array to clear selected fields
             fieldsArr.forEach( function(field) {
                 field.value = ''
-            });
+            })
+            // sets focus back on description field
+            fieldsArr[0].focus()
         }
 
     }
@@ -163,6 +165,15 @@ var controller = (function(budgetCtrl, uiCtrl) {
 
     }
 
+    var updateBudget = function() {
+        // calculate budget
+
+        // return the budget 
+
+        // display the budget in the ui
+
+    }
+
     var ctrlAddItem = function() {
         var input, newItem
         // get the field input data
@@ -173,6 +184,8 @@ var controller = (function(budgetCtrl, uiCtrl) {
         uiCtrl.addListItem(newItem, input.type)
         // clear fields
         uiCtrl.clearFields()
+        // calculate and update budget
+        updateBudget()
 
     }
 
