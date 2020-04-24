@@ -44,7 +44,8 @@ var budgetController = (function() {
     return {
         addItem: function(type, description, value) {
             var newItem
-            var id = 0 
+            // create unique id for each newItem
+            var id = data.allItems[type][data.allItems[type].length - 1].id + 1
 
             if(type === 'exp') {
                 newItem = new Expense(id, description, value)
