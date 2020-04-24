@@ -42,10 +42,15 @@ var budgetController = (function() {
     }
 
     return {
+
         addItem: function(type, description, value) {
-            var newItem
+            var newItem, id
             // create unique id for each newItem
-            var id = data.allItems[type][data.allItems[type].length - 1].id + 1
+            if (data.allItems[type].length > 0)  {
+                id = data.allItems[type][data.allItems[type].length - 1].id + 1
+            } else {
+                id = 0
+            }
 
             if(type === 'exp') {
                 newItem = new Expense(id, description, value)
@@ -56,7 +61,12 @@ var budgetController = (function() {
             // adds newItem to exp or inc arrays in data obj by checking type
             data.allItems[type].push(newItem)
             return newItem 
+        },
+
+        testing: function() {
+            console.log(data)
         }
+        
     }
 
 })()
@@ -126,9 +136,14 @@ var controller = (function(budgetCtrl, uiCtrl) {
     }
 
     var ctrlAddItem = function() {
-        // input is an obj with user inputs
-        var input = uiCtrl.getInput()
+        var input, newItem
+        // get the field input data
+        input = uiCtrl.getInput()
         console.log(input)
+        // Add item to budget controller
+        newItem = budgetCtrl.addItem(input.type, input.description, input.value)
+
+
     }
 
     return {
