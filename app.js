@@ -34,14 +34,20 @@ var budgetController = (function() {
 
 var uiController = (function() {
 
+    var domStrings = {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value'
+    }
+
     return {
 
         // returns an obj with user input 
         getInput: function() {
             return {
-                 type: document.querySelector('.add__type').value,
-                 description: document.querySelector('.add__description').value,
-                 value: document.querySelector('.add__value').value 
+                 type: document.querySelector(domStrings.inputType).value,
+                 description: document.querySelector(domStrings.inputDescription).value,
+                 value: document.querySelector(domStrings.inputValue).value 
             }
         }
 
