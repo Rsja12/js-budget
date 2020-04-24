@@ -34,7 +34,15 @@ var budgetController = (function() {
 
 var uiController = (function() {
 
-    
+    return {
+        getInput: function() {
+            return {
+                 type: document.querySelector('.add__type').value,
+                 description: document.querySelector('.add__description').value,
+                 value: document.querySelector('.add__value').value 
+            }
+        }
+    }
 
 })()
 
@@ -60,9 +68,10 @@ var appController = (function(budgetCtrl, uiCtrl) {
         console.log('test')
     }
 
+    // Checkmark btn listener 
     document.querySelector('.add__btn').addEventListener('click', ctrlAddItem)
 
-    // on outer scope because there is no target element. listening for 'enter' keypress 
+    // on outer scope because we're listening for 'enter' keypress anywhere in the document.
     document.addEventListener('keypress', function(e) {
         if (e.keyCode === 13) ctrlAddItem()
     })
