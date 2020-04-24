@@ -72,24 +72,24 @@ var uiController = (function() {
 
 var controller = (function(budgetCtrl, uiCtrl) {
 
-    // obj with dom elements
-    var dom = uiCtrl.getDomStrings()
+    var setupListeners = function() {
+        // Checkmark btn listener 
+        document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem)
 
-    var ctrlAddItem = function() {
+        // on outer scope because we're listening for 'enter' keypress anywhere in the document.
+        document.addEventListener('keypress', function(e) {
+            if (e.keyCode === 13) ctrlAddItem()
+        })
 
-        // input is an obj with user inputs
-        var input = uiCtrl.getInput()
-     
-        console.log(input)
+        // obj with dom elements
+        var dom = uiCtrl.getDomStrings()
+
     }
 
-    // Checkmark btn listener 
-    document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem)
-
-    // on outer scope because we're listening for 'enter' keypress anywhere in the document.
-    document.addEventListener('keypress', function(e) {
-        if (e.keyCode === 13) ctrlAddItem()
-    })
-  
+    var ctrlAddItem = function() {
+        // input is an obj with user inputs
+        var input = uiCtrl.getInput()
+        console.log(input)
+    }
 
 })(budgetController, uiController)
