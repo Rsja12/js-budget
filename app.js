@@ -54,7 +54,7 @@ var budgetController = (function() {
 
             // adds newItem to exp or inc arrays in data obj by checking type
             data.allItems[type].push(newItem)
-
+            return newItem 
         }
     }
 
