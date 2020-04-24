@@ -73,6 +73,10 @@ var uiController = (function() {
 var controller = (function(budgetCtrl, uiCtrl) {
 
     var setupListeners = function() {
+
+        // obj with dom elements
+        var dom = uiCtrl.getDomStrings()
+
         // Checkmark btn listener 
         document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem)
 
@@ -80,9 +84,6 @@ var controller = (function(budgetCtrl, uiCtrl) {
         document.addEventListener('keypress', function(e) {
             if (e.keyCode === 13) ctrlAddItem()
         })
-
-        // obj with dom elements
-        var dom = uiCtrl.getDomStrings()
 
     }
 
@@ -92,4 +93,16 @@ var controller = (function(budgetCtrl, uiCtrl) {
         console.log(input)
     }
 
+    return {
+        init: function() {
+            console.log('App has started')
+            setupListeners()
+        }
+
+    }
+
 })(budgetController, uiController)
+
+
+// runs the application
+controller.init()
