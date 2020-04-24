@@ -35,6 +35,8 @@ var budgetController = (function() {
 var uiController = (function() {
 
     return {
+
+        // returns an obj with user input 
         getInput: function() {
             return {
                  type: document.querySelector('.add__type').value,
@@ -42,6 +44,7 @@ var uiController = (function() {
                  value: document.querySelector('.add__value').value 
             }
         }
+
     }
 
 })()
@@ -59,13 +62,11 @@ var uiController = (function() {
 var appController = (function(budgetCtrl, uiCtrl) {
 
     var ctrlAddItem = function() {
-         // TODO
-        // Get input data
-        // Add item to the budget controller
-        // Add the new item to the ui 
-        // calculate the budget
-        // update the budget on the ui
-        console.log('test')
+
+        // input is an obj with user inputs
+        var input = uiCtrl.getInput()
+     
+        console.log(input)
     }
 
     // Checkmark btn listener 
