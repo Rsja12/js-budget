@@ -117,7 +117,11 @@ var uiController = (function() {
         inputValue: '.add__value',
         inputBtn: '.add__btn',
         incomeContainer: '.income__list',
-        expenseContainer: '.expenses__list'
+        expenseContainer: '.expenses__list',
+        budgetLabel: '.budget__value',
+        incomeLabel: '.budget__income--value',
+        expenseLabel: '.budget__expenses--value',
+        percentageLabel: '.budget__expenses--percentage'
     }
 
     return {
@@ -168,6 +172,10 @@ var uiController = (function() {
             })
             // sets focus back on description field
             fieldsArr[0].focus()
+        },
+
+        displayBudget: function(obj) {
+
         }
 
     }
@@ -205,7 +213,7 @@ var controller = (function(budgetCtrl, uiCtrl) {
         // return the budget 
         budget = budgetCtrl.getBudget()
         // display the budget in the ui
-
+        console.log(budget)
     }
 
     var ctrlAddItem = function() {
