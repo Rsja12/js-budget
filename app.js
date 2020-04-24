@@ -29,9 +29,19 @@ var budgetController = (function() {
         this.description = description,
         this.value = value 
     }
+    
+    var data = {
+        allItems: {
+            expenses: [],
+            incomes: []
+        },
+        totals: {
+            expenses: 0,
+            incomes: 0
+        }
+    }
 
 })()
-
 
 
 
