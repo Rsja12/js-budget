@@ -84,11 +84,10 @@ var uiController = (function() {
         inputValue: '.add__value',
         inputBtn: '.add__btn',
         incomeContainer: '.income__list',
-        expenseContainer: '.expense__list'
+        expenseContainer: '.expenses__list'
     }
 
     return {
-
         // returns an obj with user input 
         getInput: function() {
             return {
@@ -103,11 +102,13 @@ var uiController = (function() {
         },
 
         addListItem: function(obj, type) {
-            var html, newHtml
+            var html, newHtml, element
 
             if (type === 'inc') {
+                element = domStrings.incomeContainer
                 html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             } else {
+                element = domStrings.expenseContainer
                 html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             }
 
@@ -116,8 +117,8 @@ var uiController = (function() {
             newHtml = newHtml.replace('%description%', obj.description)
             newHtml = newHtml.replace('%value%', obj.value)
 
-            // insert the html into dom 
-
+            // identify correct container (income or expense), insert correct html
+            document.querySelector(element).insertAdjacentHTML('afterbegin', newHtml)
 
         }
 
@@ -138,13 +139,10 @@ var uiController = (function() {
 var controller = (function(budgetCtrl, uiCtrl) {
 
     var setupListeners = function() {
-
         // obj with dom elements
         var dom = uiCtrl.getDomStrings()
-
         // Checkmark btn listener 
         document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem)
-
         // on outer scope because we're listening for 'enter' keypress anywhere in the document.
         document.addEventListener('keypress', function(e) {
             if (e.keyCode === 13) ctrlAddItem()
@@ -159,7 +157,9 @@ var controller = (function(budgetCtrl, uiCtrl) {
         console.log(input)
         // Add item to budget controller
         newItem = budgetCtrl.addItem(input.type, input.description, input.value)
-
+        console.log(newItem)
+        // add item to the ui
+        uiCtrl.addListItem(newItem, input.type)
 
     }
 
