@@ -58,6 +58,17 @@ var appController = (function(budgetCtrl, uiCtrl) {
         // calculate the budget
         // update the budget on the ui
     })
+
+    // on outer scope because there is no target element. listening for 'enter' keypress 
+    document.addEventListener('keypress', function(e) {
+        if (e.keyCode === 13) console.log('test')
+         // TODO
+        // Get input data
+        // Add item to the budget controller
+        // Add the new item to the ui 
+        // calculate the budget
+        // update the budget on the ui
+    })
   
 
 })(budgetController, uiController)
