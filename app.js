@@ -175,6 +175,16 @@ var uiController = (function() {
         },
 
         displayBudget: function(obj) {
+            document.querySelector(domStrings.budgetLabel).textContent = obj.budget
+            document.querySelector(domStrings.incomeLabel).textContent = obj.totalInc
+            document.querySelector(domStrings.expenseLabel).textContent = obj.totalExp
+
+            // validation for percentage 
+            if ( obj.percentage > 0 ) {
+                document.querySelector(domStrings.percentageLabel).textContent = obj.percentage + '%'
+            } else {
+                document.querySelector(domStrings.percentageLabel).textContent = '--'
+            }
 
         }
 
@@ -213,7 +223,7 @@ var controller = (function(budgetCtrl, uiCtrl) {
         // return the budget 
         budget = budgetCtrl.getBudget()
         // display the budget in the ui
-        console.log(budget)
+        uiCtrl.displayBudget(budget)
     }
 
     var ctrlAddItem = function() {
