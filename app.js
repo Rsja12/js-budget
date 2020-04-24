@@ -51,7 +51,12 @@ var uiController = (function() {
 var appController = (function(budgetCtrl, uiCtrl) {
 
     document.querySelector('.add__btn').addEventListener('click', function() {
-        
+        // TODO
+        // Get input data
+        // Add item to the budget controller
+        // Add the new item to the ui 
+        // calculate the budget
+        // update the budget on the ui
     })
   
 
