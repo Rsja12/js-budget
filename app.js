@@ -37,7 +37,8 @@ var uiController = (function() {
     var domStrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
-        inputValue: '.add__value'
+        inputValue: '.add__value',
+        inputBtn: '.add__btn'
     }
 
     return {
@@ -49,6 +50,10 @@ var uiController = (function() {
                  description: document.querySelector(domStrings.inputDescription).value,
                  value: document.querySelector(domStrings.inputValue).value 
             }
+        },
+
+        getDomStrings: function() {
+            return domStrings
         }
 
     }
@@ -67,6 +72,9 @@ var uiController = (function() {
 
 var appController = (function(budgetCtrl, uiCtrl) {
 
+    // obj with dom elements
+    var dom = uiCtrl.getDomStrings()
+
     var ctrlAddItem = function() {
 
         // input is an obj with user inputs
@@ -76,7 +84,7 @@ var appController = (function(budgetCtrl, uiCtrl) {
     }
 
     // Checkmark btn listener 
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem)
+    document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem)
 
     // on outer scope because we're listening for 'enter' keypress anywhere in the document.
     document.addEventListener('keypress', function(e) {
