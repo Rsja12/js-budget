@@ -50,6 +50,9 @@ var uiController = (function() {
 
 var appController = (function(budgetCtrl, uiCtrl) {
 
+    document.querySelector('.add__btn').addEventListener('click', function() {
+        
+    })
   
 
 })(budgetController, uiController)
