@@ -39,7 +39,8 @@ var budgetController = (function() {
             expenses: 0,
             incomes: 0
         },
-        budget: 0
+        budget: 0,
+        percentage: -1
     }
 
     var calculateTotal = function(type) {
@@ -79,7 +80,7 @@ var budgetController = (function() {
             // calculate budget
             data.budget = data.totals.incomes - data.totals.expenses
             // calculate percentage of income that we spent
-            
+            data.percentage = Math.round((data.totals.expenses / data.totals.incomes) * 100)
         }
 
     }
