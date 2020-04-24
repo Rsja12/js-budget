@@ -32,12 +32,29 @@ var budgetController = (function() {
     
     var data = {
         allItems: {
-            expenses: [],
-            incomes: []
+            exp: [],
+            inc: []
         },
         totals: {
             expenses: 0,
             incomes: 0
+        }
+    }
+
+    return {
+        addItem: function(type, description, value) {
+            var newItem
+            var id = 0 
+
+            if(type === 'exp') {
+                newItem = new Expense(id, description, value)
+            } else {
+                newItem = new Income(id, description, value)
+            }
+
+            // adds newItem to exp or inc arrays in data obj by checking type
+            data.allItems[type].push(newItem)
+
         }
     }
 
