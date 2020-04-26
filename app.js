@@ -121,7 +121,8 @@ var uiController = (function() {
         budgetLabel: '.budget__value',
         incomeLabel: '.budget__income--value',
         expenseLabel: '.budget__expenses--value',
-        percentageLabel: '.budget__expenses--percentage'
+        percentageLabel: '.budget__expenses--percentage',
+        container: '.container'
     }
 
     return {
@@ -213,7 +214,8 @@ var controller = (function(budgetCtrl, uiCtrl) {
         document.addEventListener('keypress', function(e) {
             if (e.keyCode === 13) ctrlAddItem()
         })
-
+        // Use event delegation to add listeners to delete btns on items
+        document.querySelector(dom.container).addEventListener('click', ctrlDeleteItem)
     }
 
     var updateBudget = function() {
@@ -247,6 +249,12 @@ var controller = (function(budgetCtrl, uiCtrl) {
     return {
         init: function() {
             console.log('App has started')
+            uiCtrl.displayBudget({
+                budget: 0,
+                totalInc: 0,
+                totalExp: 0,
+                percentage: 0
+            })
             setupListeners()
         }
 
