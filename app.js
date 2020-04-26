@@ -283,7 +283,7 @@ var controller = (function(budgetCtrl, uiCtrl) {
             // delete the item from the UI
             uiCtrl.deleteListItem(itemId)
             // update and show new budget 
-
+            updateBudget()
         }
     }
 
