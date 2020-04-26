@@ -178,6 +178,12 @@ var uiController = (function() {
 
         },
 
+        deleteListItem: function(selectorId) {
+            var element = document.getElementById(selectorId)
+            element.parentNode.removeChild(element)
+            
+        },
+
         clearFields: function() {
             var fields, fieldsArr
 
