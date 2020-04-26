@@ -73,6 +73,20 @@ var budgetController = (function() {
             return newItem 
         },
 
+        deleteItem: function(type, id) {
+            var ids, index
+            // return array of ids
+            ids = data.allItems[type].map( function(item) {
+                return item.id
+            })
+            // find the index of the id we want to delete
+            index = ids.indexOf(id)
+            // starts removing from first arg(index). second arg is number of elements we want to remove
+            if ( index !== -1 ) {
+                data.allItems[type].splice(index, 1)
+            }
+        },
+
         calculateBudget: function() {
             // calculate inc and exp
             calculateTotal('exp')
@@ -94,6 +108,10 @@ var budgetController = (function() {
                 totalExp: data.totals.exp,
                 percentage: data.percentage
             }
+        },
+
+        testing: function() {
+            return data 
         }
 
     }
@@ -254,9 +272,9 @@ var controller = (function(budgetCtrl, uiCtrl) {
         if(itemId) {
             splitId = itemId.split('-')
             type = splitId[0]
-            id = splitId[1]
-            // delete the item from the data struct
-
+            id = parseInt(splitId[1])
+            // delete the item from the data structure
+            budgetCtrl.deleteItem(type, id)
             // delete the item from the UI
 
             // update and show new budget 
