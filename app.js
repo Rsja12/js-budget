@@ -144,10 +144,10 @@ var uiController = (function() {
 
             if (type === 'inc') {
                 element = domStrings.incomeContainer
-                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             } else {
                 element = domStrings.expenseContainer
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             }
 
             // replace the placeholder text with data 
@@ -244,6 +244,24 @@ var controller = (function(budgetCtrl, uiCtrl) {
             updateBudget()
         }
 
+    }
+
+    var ctrlDeleteItem = function(e) {
+        var itemId, splitId, type, id
+
+        itemId = e.target.parentNode.parentNode.parentNode.parentNode.id
+
+        if(itemId) {
+            splitId = itemId.split('-')
+            type = splitId[0]
+            id = splitId[1]
+            // delete the item from the data struct
+
+            // delete the item from the UI
+
+            // update and show new budget 
+
+        }
     }
 
     return {
