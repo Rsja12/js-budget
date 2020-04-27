@@ -192,6 +192,12 @@ var uiController = (function() {
         return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + decimal 
     }
 
+    var nodeListForEach = function(list, cb) {
+        for ( var i = 0; i < list.length; i++ ) {
+            cb(list[i], i)
+        }
+    }
+
     return {
         // returns an obj with user input 
         getInput: function() {
@@ -268,12 +274,6 @@ var uiController = (function() {
         displayPercentages: function(percentages) {
             // nodeList of elements with this class
             var fields = document.querySelectorAll(domStrings.expPercentLabel)
-            // custom forEach function for going over nodeList
-            var nodeListForEach = function(list, cb) {
-                for ( var i = 0; i < list.length; i++ ) {
-                    cb(list[i], i)
-                }
-            }
             // call custom function so that we can change the textContent of each nodeList to be the percentage at position idx 
             nodeListForEach(fields, function(item, idx) {
                 if (percentages[idx] > 0) {
@@ -283,6 +283,18 @@ var uiController = (function() {
                 }
             })
 
+        },
+
+        changeType: function() {
+            var fields = document.querySelectorAll(
+                domStrings.inputType + ',' +
+                domStrings.inputDescription + ',' +
+                domStrings.inputValue
+            )
+
+            nodeListForEach(fields, function(item) {
+                item.classList.toggle('red-focus')
+            })
         },
 
         displayDate: function() {
@@ -323,6 +335,8 @@ var controller = (function(budgetCtrl, uiCtrl) {
         })
         // Use event delegation to add listeners to delete btns on items
         document.querySelector(dom.container).addEventListener('click', ctrlDeleteItem)
+        // handle change event for ux in input fields
+        document.querySelector(dom.inputType).addEventListener('change', uiCtrl.changeType)
     }
 
     var updateBudget = function() {
