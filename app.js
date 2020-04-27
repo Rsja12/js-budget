@@ -295,6 +295,8 @@ var uiController = (function() {
             nodeListForEach(fields, function(item) {
                 item.classList.toggle('red-focus')
             })
+
+            document.querySelector(domStrings.inputBtn).classList.toggle('red')
         },
 
         displayDate: function() {
