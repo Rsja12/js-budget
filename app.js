@@ -173,6 +173,24 @@ var uiController = (function() {
         expPercentLabel: '.item__percentage'
     }
 
+    var formatNumber = function(num, type) {
+        var splitNum, int, decimal
+        // get the absolute value of num and update the variable
+        num = Math.abs(num)
+        // put 2 decimal nums on the number on which we call the method
+        num = num.toFixed(2)
+
+        splitNum = num.split('.')
+        int = splitNum[0]
+        decimal = splitNum[1]
+        // format numbers to put comma in right place 
+        if( int.length > 3 ) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3)
+        }
+
+        return (type === 'exp' ? '-' : '+') + ' ' + int + decimal 
+    }
+
     return {
         // returns an obj with user input 
         getInput: function() {
@@ -192,16 +210,16 @@ var uiController = (function() {
 
             if (type === 'inc') {
                 element = domStrings.incomeContainer
-                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             } else {
                 element = domStrings.expenseContainer
-                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             }
 
             // replace the placeholder text with data 
             newHtml = html.replace('%id%', obj.id)
             newHtml = newHtml.replace('%description%', obj.description)
-            newHtml = newHtml.replace('%value%', obj.value)
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type))
 
             // identify correct container (income or expense), insert correct html
             document.querySelector(element).insertAdjacentHTML('afterbegin', newHtml)
