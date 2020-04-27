@@ -188,7 +188,7 @@ var uiController = (function() {
             int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3)
         }
 
-        return (type === 'exp' ? '-' : '+') + ' ' + int + decimal 
+        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + decimal 
     }
 
     return {
