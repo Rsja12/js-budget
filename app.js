@@ -251,6 +251,15 @@ var uiController = (function() {
                     cb(list[i], i)
                 }
             }
+            // call custom function so that we can change the textContent of each nodeList to be the percentage at position idx 
+            nodeListForEach(fields, function(item, idx) {
+                if (percentages[idx] > 0) {
+                    item.textContent = percentages[idx]
+                } else {
+                    item.textContent = '--'
+                }
+            })
+
         }
 
     }
