@@ -254,7 +254,7 @@ var uiController = (function() {
             // call custom function so that we can change the textContent of each nodeList to be the percentage at position idx 
             nodeListForEach(fields, function(item, idx) {
                 if (percentages[idx] > 0) {
-                    item.textContent = percentages[idx]
+                    item.textContent = percentages[idx] + '%'
                 } else {
                     item.textContent = '--'
                 }
@@ -307,7 +307,7 @@ var controller = (function(budgetCtrl, uiCtrl) {
         // read percentages from budget controller
         var percentages = budgetCtrl.getPercentages()
         // update the UI with new percentages 
-        console.log(percentages)
+        uiCtrl.displayPercentages(percentages)
     }
 
     var ctrlAddItem = function() {
