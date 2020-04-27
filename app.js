@@ -252,8 +252,8 @@ var uiController = (function() {
             obj.budget >= 0 ? type = 'inc' : type = 'exp'
 
             document.querySelector(domStrings.budgetLabel).textContent = formatNumber(obj.budget, type)
-            document.querySelector(domStrings.incomeLabel).textContent = formatNumber(obj.totalInc, type)
-            document.querySelector(domStrings.expenseLabel).textContent = formatNumber(obj.totalExp, type)
+            document.querySelector(domStrings.incomeLabel).textContent = formatNumber(obj.totalInc, 'inc')
+            document.querySelector(domStrings.expenseLabel).textContent = formatNumber(obj.totalExp, 'exp')
 
             // validation for percentage 
             if ( obj.percentage > 0 ) {
