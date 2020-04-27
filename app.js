@@ -229,7 +229,7 @@ var uiController = (function() {
             newHtml = newHtml.replace('%value%', formatNumber(obj.value, type))
 
             // identify correct container (income or expense), insert correct html
-            document.querySelector(element).insertAdjacentHTML('afterbegin', newHtml)
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml)
 
         },
 
