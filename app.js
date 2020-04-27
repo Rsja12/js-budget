@@ -169,7 +169,8 @@ var uiController = (function() {
         incomeLabel: '.budget__income--value',
         expenseLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
-        container: '.container'
+        container: '.container',
+        expPercentLabel: '.item__percentage'
     }
 
     return {
@@ -239,6 +240,17 @@ var uiController = (function() {
                 document.querySelector(domStrings.percentageLabel).textContent = '--'
             }
 
+        },
+
+        displayPercentages: function(percentages) {
+            // nodeList of elements with this class
+            var fields = document.querySelectorAll(domStrings.expPercentLabel)
+            // custom forEach function for going over nodeList
+            var nodeListForEach = function(list, cb) {
+                for ( var i = 0; i < list.length; i++ ) {
+                    cb(list[i], i)
+                }
+            }
         }
 
     }
