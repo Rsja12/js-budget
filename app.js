@@ -247,9 +247,13 @@ var uiController = (function() {
         },
 
         displayBudget: function(obj) {
-            document.querySelector(domStrings.budgetLabel).textContent = obj.budget
-            document.querySelector(domStrings.incomeLabel).textContent = obj.totalInc
-            document.querySelector(domStrings.expenseLabel).textContent = obj.totalExp
+            var type 
+
+            obj.budget >= 0 ? type = 'inc' : type = 'exp'
+
+            document.querySelector(domStrings.budgetLabel).textContent = formatNumber(obj.budget, type)
+            document.querySelector(domStrings.incomeLabel).textContent = formatNumber(obj.totalInc, type)
+            document.querySelector(domStrings.expenseLabel).textContent = formatNumber(obj.totalExp, type)
 
             // validation for percentage 
             if ( obj.percentage > 0 ) {
